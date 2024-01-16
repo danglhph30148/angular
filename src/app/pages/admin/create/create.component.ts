@@ -13,6 +13,7 @@ import { ToastModule } from 'primeng/toast';
 
 import { ProductService } from '../../../service/products.service';
 import { CategoryService } from '../../../service/category.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -29,7 +30,8 @@ export class CreateComponent {
     private productService: ProductService,
     private categoryService: CategoryService,
     private formBuilder: FormBuilder,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router
   ) {
     this.userForm = this.formBuilder.group({
       title: ['', Validators.required],
@@ -57,6 +59,8 @@ export class CreateComponent {
             detail: 'Add Success',
           });
           this.userForm.reset();
+          // Chuyển hướng đến trang sản phẩm (ví dụ là '/products')
+          this.router.navigate(['/admin/products']);
         }
       });
     }
