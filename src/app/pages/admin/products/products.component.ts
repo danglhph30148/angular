@@ -19,10 +19,10 @@ export class ProductsComponent {
   productList: any = [];
   constructor(
     private productService: ProductService,
-    private confirmationService: ConfirmationService,
-    private messageService: MessageService,
-    private router: Router
-  ) {}
+    // private confirmationService: ConfirmationService,
+    private messageService: MessageService
+  ) // private router: Router
+  {}
 
   getAll(): void {
     this.productService
