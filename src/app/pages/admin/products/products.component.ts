@@ -1,11 +1,56 @@
-import { Component } from '@angular/core';
-import { SidebarComponent } from '../../../components/sidebar/sidebar.component';
+import { Component, inject } from '@angular/core';
+import { NgFor } from '@angular/common';
+import { ProductService } from '../../../service/products.service';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ButtonModule } from 'primeng/button';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [SidebarComponent],
+  imports: [NgFor, ToastModule, ConfirmDialogModule, ButtonModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
+  providers: [MessageService, ConfirmationService],
 })
-export class ProductsComponent {}
+export class ProductsComponent {
+  productList: any = [];
+  constructor(
+    private productService: ProductService,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService,
+    private router: Router
+  ) {}
+
+  getAll(): void {
+    this.productService
+      .getProductListAdmin()
+      .subscribe((products: any) => (this.productList = products.data)); // callApi.then(cb fuc)
+  }
+
+  ngOnInit(): void {
+    this.getAll();
+  }
+  // deleteProduct(id) : productService.deleteProductById(id)
+  deleteProduct(id: string) {
+    let check = confirm('do you want to delete this product!');
+    if (check) {
+      this.productService.deleteProductAdmin(id).subscribe((data: any) => {
+        if (data.status === 0) {
+          console.log(data);
+          this.messageService.add({
+            severity: 'success',
+
+            detail: 'Delete Success',
+          });
+          this.getAll();
+        }
+      });
+    }
+  }
+}
+// 1. viết service
+// 2. Update UI
+// 3. Handle trong components
