@@ -1,13 +1,13 @@
 import { Category } from './Category';
 
 export type Product = {
-  id: number; // Omit loai bo
+  _id: number;
   title: string;
   price: number;
   image: string;
   description: string;
-  category: string; // Omit loai bo
-  rating: {
+  categoryId: string;
+  rating?: {
     rate: number;
     count: number;
   };

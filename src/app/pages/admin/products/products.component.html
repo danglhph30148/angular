@@ -39,6 +39,7 @@
         <td class="px-6 py-4">${{ product.price }}</td>
         <td class="px-6 py-4">
           <button
+            (click)="editProduct(product._id)"
             class="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-[10px]"
           >
             Edit

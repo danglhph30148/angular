@@ -51,7 +51,6 @@ export class CreateComponent {
       const formData = this.userForm.value;
 
       this.productService.addProductAdmin(formData).subscribe((data: any) => {
-        console.log(data);
         if (data.status === 0) {
           this.messageService.add({
             severity: 'success',
@@ -59,7 +58,6 @@ export class CreateComponent {
             detail: 'Add Success',
           });
           this.userForm.reset();
-          // Chuyển hướng đến trang sản phẩm (ví dụ là '/products')
           this.router.navigate(['/admin/products']);
         }
       });

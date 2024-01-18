@@ -20,9 +20,9 @@ export class ProductsComponent {
   constructor(
     private productService: ProductService,
     // private confirmationService: ConfirmationService,
-    private messageService: MessageService
-  ) // private router: Router
-  {}
+    private messageService: MessageService,
+    private router: Router
+  ) {}
 
   getAll(): void {
     this.productService
@@ -50,7 +50,11 @@ export class ProductsComponent {
       });
     }
   }
+  editProduct(id: string) {
+    return this.router.navigate([`/admin/products/${id}`]);
+  }
 }
+
 // 1. viết service
 // 2. Update UI
 // 3. Handle trong components
