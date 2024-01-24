@@ -1,0 +1,25 @@
+<li style="border: 1px solid grey; padding: 10px">
+    <a href="#" class="group block overflow-hidden">
+      <img
+        [src]="productChild.image"
+        alt=""
+        class="h-[250px] w-full transition duration-500 group-hover:scale-105 sm:h-[280px]"
+      />
+  
+      <div class="relative bg-white pt-3">
+        <h3
+          class="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4"
+        >
+          {{ productChild.title }}
+        </h3>
+  
+        <p class="mt-2">
+          <span class="sr-only"> Regular Price </span>
+  
+          <span class="tracking-wider text-gray-900">
+            ${{ productChild.price }}
+          </span>
+        </p>
+      </div>
+    </a>
+  </li>

@@ -7,6 +7,9 @@ import { CreateComponent } from './pages/admin/create/create.component';
 import { EditComponent } from './pages/admin/edit/edit.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { CreateCategoryComponent } from './pages/admin/category/create-category/create-category.component';
+import { UpdateCategoryComponent } from './pages/admin/category/update-category/update-category.component';
+import { ListcategoryComponent } from './pages/admin/category/listcategory/listcategory.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,6 +25,9 @@ export const routes: Routes = [
       { path: 'products', component: ProductsComponent },
       { path: 'create', component: CreateComponent },
       { path: 'products/:id', component: EditComponent },
+      { path: 'categories', component: ListcategoryComponent },
+      { path: 'category/create', component: CreateCategoryComponent },
+      { path: 'category/:id', component: UpdateCategoryComponent },
       
     ],
   },

@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { NgFor } from '@angular/common';
-import { ProductService } from '../../../service/products.service';
+
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
-
+import { ProductService } from '../../../service/products.service';
 @Component({
   selector: 'app-products',
   standalone: true,
@@ -53,8 +53,7 @@ export class ProductsComponent {
   editProduct(id: string) {
     return this.router.navigate([`/admin/products/${id}`]);
   }
+  addProduct() {
+    return this.router.navigate([`/admin/create`]);
+  }
 }
-
-// 1. viết service
-// 2. Update UI
-// 3. Handle trong components
