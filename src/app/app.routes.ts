@@ -5,17 +5,18 @@ import { ProductsComponent } from './pages/admin/products/products.component';
 import { AdminComponent } from './layouts/admin/admin.component';
 import { CreateComponent } from './pages/admin/create/create.component';
 import { EditComponent } from './pages/admin/edit/edit.component';
-import { SigninComponent } from './pages/signin/signin.component';
-import { SignupComponent } from './pages/signup/signup.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 import { CreateCategoryComponent } from './pages/admin/category/create-category/create-category.component';
 import { UpdateCategoryComponent } from './pages/admin/category/update-category/update-category.component';
 import { ListcategoryComponent } from './pages/admin/category/listcategory/listcategory.component';
+import { authGuard } from './guard/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'signup', component:SignupComponent },
-  { path: 'signin', component:SigninComponent },
+  { path: 'register', component:RegisterComponent },
+  { path: 'login', component:LoginComponent },
 
   {
     path: 'admin',
@@ -30,5 +31,6 @@ export const routes: Routes = [
       { path: 'category/:id', component: UpdateCategoryComponent },
       
     ],
+    canActivate: [authGuard],
   },
 ];
