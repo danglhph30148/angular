@@ -11,6 +11,9 @@ import { CreateCategoryComponent } from './pages/admin/category/create-category/
 import { UpdateCategoryComponent } from './pages/admin/category/update-category/update-category.component';
 import { ListcategoryComponent } from './pages/admin/category/listcategory/listcategory.component';
 import { authGuard } from './guard/auth.guard';
+import { CreateUserComponent } from './pages/admin/user/createuser/createuser.component';
+import { ListUserComponent } from './pages/admin/user/listuser/listuser.component';
+
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -29,6 +32,8 @@ export const routes: Routes = [
       { path: 'categories', component: ListcategoryComponent },
       { path: 'category/create', component: CreateCategoryComponent },
       { path: 'category/:id', component: UpdateCategoryComponent },
+      {path: 'user/userlist', component: ListUserComponent},
+      { path:  'user/create', component: CreateUserComponent},
       
     ],
     canActivate: [authGuard],
