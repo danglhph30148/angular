@@ -11,10 +11,7 @@ import { MessageService } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
 import { ToastModule } from 'primeng/toast';
-import {
-  Category,
-  typeResponseCategory,
-} from '../../../../types/Category';
+import { Category } from '../../../../types/Category';
 
 @Component({
   selector: 'app-update-category',
@@ -27,7 +24,7 @@ import {
 export class UpdateCategoryComponent {
   userForm: FormGroup;
 
-  categories: Category = { _id: '', name: '' };
+  categories: any = { _id: '', name: '' };
   constructor(
     private categoryService: CategoryService,
     private formBuilder: FormBuilder,
@@ -44,7 +41,7 @@ export class UpdateCategoryComponent {
     if (id) {
       this.categoryService
         .getOneCategory(id)
-        .subscribe((data: typeResponseCategory) => {
+        .subscribe((data: any) => {
           if (data.status === 0) {
             this.userForm.patchValue({
               name: data.data.name,
