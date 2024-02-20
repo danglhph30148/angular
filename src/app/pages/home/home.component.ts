@@ -17,7 +17,9 @@ export class HomeComponent {
   productList: any = [];
   ngOnInit(): void {
     this.productService
-      .getProductList()
-      .subscribe((products: any) => (this.productList = products.data));
+      .getProduct({ page: 0, size: 4 })
+      .subscribe((product: any) => {
+        return (this.productList = product.data);
+      });
   }
 }

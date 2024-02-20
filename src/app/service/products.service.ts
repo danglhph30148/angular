@@ -9,27 +9,45 @@ import { Observable } from 'rxjs';
 export class ProductService {
   // call api
   apiUrl = 'https://apipro.netlify.app/.netlify/functions/api/product';
+// inject bien http
+  constructor(private http: HttpClient) {}
 
-  http = inject(HttpClient); // inject bien http
-  constructor() {}
-
-  getProductList(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.apiUrl);
-  }
-
-  getProductListAdmin(): Observable<ProductAdmin[]> {
-    return this.http.get<ProductAdmin[]>(this.apiUrl);
+  getProduct(page: any): Observable<any> {
+    return this.http.get<any>(
+      `${this.apiUrl}?page=${page.page}&size=${page.size}`
+    );
   }
   getOneProduct(id: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`);
+    return this.http.get<any>(`${this.apiUrl}/detail/${id}`);
   }
-  deleteProductAdmin(id: string): Observable<ProductAdmin[]> {
-    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  getCategoryProduct(id: any): Observable<any> {
+    return this.http.get<any>(
+      `${this.apiUrl}/category/${id.id}?page=${id.page}&size=${id.size}`
+    );
   }
-  addProductAdmin(product: any) {
+  getSearchProduct(id: any): Observable<any> {
+    return this.http.get<any>(
+      `${this.apiUrl}/search/${id.search}?page=${id.page}&size=${id.size}`
+    );
+  }
+  getSearchDebouceProduct(id: any): Observable<any> {
+    return this.http.get<any>(
+      `${this.apiUrl}/searchdebouce?search=${id.search}`
+    );
+  }
+  getFilterProduct(id: any): Observable<any> {
+    return this.http.post<any>(
+      `${this.apiUrl}/filter?page=${id.page}&size=${id.size}`,
+      { id: id.id }
+    );
+  }
+  deleteProduct(id: string) {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+  addProduct(product: any) {
     return this.http.post(`${this.apiUrl}`, product);
   }
-  editProduct(product: any) {
+  updateProduct(product: any) {
     return this.http.put(`${this.apiUrl}/${product.id}`, product);
   }
 }

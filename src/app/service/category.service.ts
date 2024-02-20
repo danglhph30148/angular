@@ -11,8 +11,18 @@ export class CategoryService {
   getCategory(): Observable<any> {
     return this.http.get<any>(this.apiUrl);
   }
+  getPagiCategory(page: any): Observable<any> {
+    return this.http.get<any>(
+      `${this.apiUrl}/pagi?page=${page.page}&size=${page.size}`
+    );
+  }
+  getSearchCategory(id: any): Observable<any> {
+    return this.http.get<any>(
+      `${this.apiUrl}/search/${id.search}?page=${id.page}&size=${id.size}`
+    );
+  }
   getOneCategory(id: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`);
+    return this.http.get<any>(`${this.apiUrl}/detail/${id}`);
   }
   deleteCategory(id: string) {
     return this.http.delete(`${this.apiUrl}/${id}`);
